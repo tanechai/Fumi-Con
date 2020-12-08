@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # These are the packages required on Ubuntu systems.
-apt install build-essential cmake git pkg-config libgtk-3-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libjpeg-dev libpng-dev libtiff-dev gfortran openexr libatlas-base-dev python3-dev python3-numpy libtbb2 libtbb-dev libdc1394-22-dev
+apt install build-essential cmake clang git pkg-config libgtk-3-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libjpeg-dev libpng-dev libtiff-dev gfortran openexr libatlas-base-dev python3-dev python3-numpy libtbb2 libtbb-dev libdc1394-22-dev
 
+# Install OpenCV
 mkdir ~/opencv_build
 cd ~/opencv_build
 git clone https://github.com/opencv/opencv.git
@@ -17,5 +18,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_
 make -j8
 make install
 
+# OpenCV version
 pkg-config --modversion opencv4
 
