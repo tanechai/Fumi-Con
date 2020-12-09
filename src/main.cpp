@@ -49,7 +49,6 @@ int main(int argc, char** argv)
         std::cout << "click more points" << std::endl;
         return -1;
     }
-    std::cout << "aaa" << std::endl;
     while(true){
         cap.read(frame);
         for(int i = 0; i < 4; i++){
