@@ -55,13 +55,12 @@ int main(int argc, char** argv)
         return -1;
     }
     cv::Mat dst = cv::Mat::zeros(67*7, 67*10, CV_8UC3);
-    double para = 1;
-    double para2 = 30;
+    double param = 30;
     const std::vector<cv::Point2f> dst_pt={
-        cv::Point2f(dst.cols/2 - 3*para2/2,dst.rows/2 - 4*para2/2),
-        cv::Point2f(dst.cols/2 - 3*para2/2,dst.rows/2 + 4*para2/2),
-        cv::Point2f(dst.cols/2 + 3*para2/2,dst.rows/2 - 4*para2/2),
-        cv::Point2f(dst.cols/2 + 3*para2/2,dst.rows/2 + 4*para2/2)
+        cv::Point2f(dst.cols/2 - 3*param/2,dst.rows/2 - 4*param/2),
+        cv::Point2f(dst.cols/2 - 3*param/2,dst.rows/2 + 4*param/2),
+        cv::Point2f(dst.cols/2 + 3*param/2,dst.rows/2 - 4*param/2),
+        cv::Point2f(dst.cols/2 + 3*param/2,dst.rows/2 + 4*param/2)
     };
     
     // homography 行列を計算
