@@ -40,14 +40,9 @@ int main(int argc, char** argv)
     cv::Mat frame_;
     cv::Mat frame;
     cap.read(frame_);
+
+    cv::undistort(frame_, frame, K, distCoeffs);
     
-    cv::Mat newK = cv::getOptimalNewCameraMatrix(K,distCoeffs,cv::Size2d(frame_.cols,frame_.rows),0.05);
-    cv::Mat R = cv::Mat::eye(3,3,CV_32F);
-    std::vector<cv::Mat> map(2);
-    cv::initUndistortRectifyMap(K,distCoeffs,R,newK,cv::Size2d(frame_.cols,frame_.rows),CV_32FC1,map.at(0),map.at(1));
-    cv::remap(frame_,frame,map.at(0),map.at(1),cv::INTER_AREA);
-    
-    //cv::undistort(frame_, frame, K, distCoeffs);
     const std::string selectWinName = "select window";
     selectedData data;
     cv::namedWindow(selectWinName);
@@ -73,8 +68,7 @@ int main(int argc, char** argv)
     const cv::Mat homography_matrix = cv::getPerspectiveTransform(data.selectedPoints,dst_pt);
     while(true){
         cap.read(frame_);
-        cv::remap(frame_,frame,map.at(0),map.at(1),cv::INTER_AREA);
-        //cv::undistort(frame_, frame, K, distCoeffs);
+        cv::undistort(frame_, frame, K, distCoeffs);
         for(int i = 0; i < 4; i++){
             cv::circle(frame,data.selectedPoints.at(i),3,cv::Scalar(255,255,255));
         }
